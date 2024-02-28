@@ -14,6 +14,8 @@ interface IERC721GROUP {
 contract SciChainTest is Test {
 
     event ProposalListed(uint256 indexed proposalId, address indexed owner, uint256 indexed groupId, uint256 timestamp);
+    event DelistProposal(uint256 indexed proposalId, uint256 indexed groupId);
+
 
     SciChain public sciChain;
 
@@ -50,7 +52,7 @@ contract SciChainTest is Test {
 
         // failed with not group owner
         vm.startPrank(address(0x1234));
-        vm.expectRevert("MarketPlace: only group owner");
+        vm.expectRevert("SciChain: only group owner");
         sciChain.listProposal(title, description, tokenId);
         vm.stopPrank();
 
@@ -61,7 +63,29 @@ contract SciChainTest is Test {
         sciChain.listProposal(title, description, tokenId);
     }
 
-    function testDelist(uint256 tokenId) public {
-        
+    function testDelist() public {
+        uint256 tokenId = 1;
+        uint256 proposalId = 1;
+        vm.assume(!IERC721NonTransferable(groupToken).exists(tokenId));
+
+        vm.prank(groupHub);
+        IERC721GROUP(groupToken).mint(address(this), tokenId);
+
+        vm.expectRevert("SciChain: only group owner");
+        sciChain.delistProposal(tokenId, proposalId);
+
+        sciChain.listProposal(title, description, tokenId);
+
+        vm.startPrank(address(0x1234));
+        vm.expectRevert("SciChain: only group owner");
+        sciChain.delistProposal(tokenId, proposalId);
+        vm.stopPrank();
+
+        // success case
+        sciChain.listProposal(title, description, tokenId);
+        vm.expectEmit(true, true, false, false, address(sciChain));
+        emit DelistProposal(proposalId, tokenId);
+        sciChain.delistProposal(tokenId, 1);
+
     }
 }

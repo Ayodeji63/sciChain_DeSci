@@ -1,0 +1,8 @@
+@bnb-chain/=lib/greenfield-contracts-sdk/node_modules/@bnb-chain/
+@bnb-chain/greenfield-contracts/=lib/greenfield-contracts-sdk/node_modules/@bnb-chain/greenfield-contracts/
+@openzeppelin/=lib/greenfield-contracts-sdk/node_modules/@openzeppelin/
+@openzeppelin/contracts-upgradeable/=lib/greenfield-contracts-sdk/node_modules/@openzeppelin/contracts-upgradeable/
+@openzeppelin/contracts/=lib/greenfield-contracts-sdk/node_modules/@openzeppelin/contracts/
+ds-test/=lib/forge-std/lib/ds-test/src/
+forge-std/=lib/forge-std/src/
+greenfield-contracts-sdk/=lib/greenfield-contracts-sdk/contracts/
