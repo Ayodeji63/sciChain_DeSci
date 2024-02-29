@@ -4,3 +4,6 @@
 [submodule "contract/lib/greenfield-contracts-sdk"]
 	path = contract/lib/greenfield-contracts-sdk
 	url = https://github.com/bnb-chain/greenfield-contracts-sdk
+[submodule "contract/lib/foundry-devops"]
+	path = contract/lib/foundry-devops
+	url = https://github.com/cyfrin/foundry-devops

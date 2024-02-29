@@ -16,10 +16,10 @@ contract TreasuryDAO is Ownable {
         sciChain = SciChain(_sciChainAddress);
     }
 
-    function fundProject(address recipient, uint256 proposalId, uint256 _amount) onlyOwner public {
-        require(uint8(sciChain.getProposalStatus(proposalId)) == PUBLISHED_STATUS, "ProjectFunding: Cant Fund This Project");
+    function fundProject(address recipient, uint256 proposalId, uint256 _amount) onlyOwner payable public {
+        require(uint8(sciChain.getProposalStatus(proposalId)) == uint8(PUBLISHED_STATUS), "ProjectFunding: Cant Fund This Project");
         require(_amount <= address(this).balance, "ProjectFunding: Invalid amount");
-        (bool success, ) = recipient.call{value: _amount}("");
+        (bool success, ) = payable(recipient).call{value: _amount}("");
         require(success, "ProjectFunding: Failed To Send Funds");
     }
     function deposit() external payable {
