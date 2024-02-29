@@ -33,16 +33,21 @@ import "@bnb-chain/greenfield-contracts/contracts/interface/IERC721NonTransferab
 contract SciChain is ReentrancyGuard, AccessControl, GroupApp {
 
     /***********Type Declarations ************/
-    enum ProposalStatus { Listed, Reviewed, Published }
+    enum ProposalStatus { 
+    Listed, // 0 
+    Reviewed, // 1
+    Published // 2 
+    }
     using EnumerableSetUpgradeable for EnumerableSetUpgradeable.UintSet;
       struct Proposal {
         string title;
         string description;
         address owner;
-        ProposalStatus status;
         uint256 reviewScore;
         uint256 reviewCount;
+        uint256 averageScore;
         uint256 timestamp;
+        ProposalStatus status;
     }
 
     /******************* constant  *********************/
@@ -58,6 +63,8 @@ contract SciChain is ReentrancyGuard, AccessControl, GroupApp {
     bytes32 public constant PUBLISHER_ROLE = keccak256("PUBLISHER_ROLE");
 
     uint256 public constant MINIMUM_REVIEW_SCORE = 1; // Adjust as needed
+    uint256 public constant MAXIMUM_REVIEW_SCORE = 5;
+    uint256 public constant AVERAGE_REVIEW_SCORE = 2;
       // all listed group _ids, ordered by listed time
     EnumerableSetUpgradeable.UintSet private _listedGroups;
 
@@ -67,6 +74,7 @@ contract SciChain is ReentrancyGuard, AccessControl, GroupApp {
     uint256 public proposalCounter;
     uint256 public transferGasLimit; // 2300 for now
     uint256 public feeRate; // 10000 = 100%
+    uint256 public reviewerCount;
 
     mapping(uint256 => Proposal) public proposals;
     mapping(address => EnumerableSetUpgradeable.UintSet) private userProposals;
@@ -77,7 +85,9 @@ contract SciChain is ReentrancyGuard, AccessControl, GroupApp {
     // user address => user listed group IDs, ordered by listed time
     mapping(address => EnumerableSetUpgradeable.UintSet) private _userListedGroups;
 
-    mapping (address proposalOwner => uint256 proposalId) proposalOwner;
+    mapping (address reviewer=> mapping (uint256 proposalId=> uint256 reviweScore)) reviewerScore;
+
+    mapping (address reviewer => mapping (uint proposalId => bool reviewed)) hasReviewedProposal;
 
 
     /********* Events ********/
@@ -94,7 +104,7 @@ contract SciChain is ReentrancyGuard, AccessControl, GroupApp {
         _;
     }
 
-    modifier onlyReviewer() {
+    modifier onlyReviewers() {
         require(hasRole(REVIEWER_ROLE, msg.sender), "SciChain: caller is not a reviewer");
         _;
     }
@@ -185,31 +195,38 @@ contract SciChain is ReentrancyGuard, AccessControl, GroupApp {
 
     function addReviewer(address account) external onlyOwner {
         require(account != address(0), "SciChain: reviewer cannot be address 0");
+        require(hasRole(REVIEWER_ROLE, account) == false, "SciChain: account already added");
         _setupRole(REVIEWER_ROLE, account);
-
+        reviewerCount++;
         emit ReviewerAdded();
     }
 
     function removeReviewer(address account) external onlyOwner {
         require(account != address(0), "SciChain: reviewer cannot be address 0");
+        
         _revokeRole(REVIEWER_ROLE, account);
 
         emit ReviewerRemoved();
     }
 
-    function reviewProposal(uint256 proposalId, uint256 reviewScore) external onlyReviewer {
-        require(proposals[proposalId].status == ProposalStatus.Listed, "SciChain: proposal not listed");
-        require(reviewScore >= MINIMUM_REVIEW_SCORE, "SciChain: review score too low");
+    function reviewProposal(uint256 proposalId, uint256 reviewScore) external onlyReviewers {
+        require(proposalId <= proposalCounter, "SciChain: proposal not listed");
+        require(reviewScore >= MINIMUM_REVIEW_SCORE, "SciChain: review score too low"); 
+        require(hasReviewedProposal[msg.sender][proposalId] == false, "SciChain: reviewer has reviewed proposal");
+       uint256 previousScore = proposals[proposalId].reviewScore;
 
         proposals[proposalId].status = ProposalStatus.Reviewed;
-        proposals[proposalId].reviewScore = reviewScore;
+        proposals[proposalId].reviewScore = previousScore + reviewScore;
         proposals[proposalId].reviewCount++;
-
+        proposals[proposalId].averageScore = (proposals[proposalId].reviewScore * proposals[proposalId].reviewCount) / proposals[proposalId].reviewCount;
+        reviewerScore[msg.sender][proposalId] = reviewScore;
+        hasReviewedProposal[msg.sender][proposalId] = true;
         emit ProposalReviewed(proposalId, msg.sender, reviewScore, block.timestamp);
     }
 
     function publishProposal(uint256 proposalId) external onlyPublisher {
         require(proposals[proposalId].status == ProposalStatus.Reviewed, "SciChain: proposal not reviewed");
+        require(proposals[proposalId].averageScore >= reviewerCount * AVERAGE_REVIEW_SCORE, "SciChain: proposal review score too low");
 
         proposals[proposalId].status = ProposalStatus.Published;
 
@@ -222,5 +239,9 @@ contract SciChain is ReentrancyGuard, AccessControl, GroupApp {
             userProposalIds[i] = userProposals[user].at(i);
         }
         return userProposalIds;
+    }
+
+    function getProposalStatus(uint256 proposalId) public view returns(uint8 status) {
+        return uint8(proposals[proposalId].status);
     }
 }
