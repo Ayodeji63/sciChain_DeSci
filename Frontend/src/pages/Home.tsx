@@ -1,142 +1,98 @@
+import React from 'react';
 import styled from '@emotion/styled';
-import HomeList from '../components/home/Index';
 import { Flex } from '@totejs/uikit';
 import Bg from '../images/bg.png';
-import GithubIcon from '../components/svgIcon/GithubIcon';
-import { DocIcon, FullTeamIcon, LinkArrowIcon } from '@totejs/icons';
-import DiscordIcon from '../components/svgIcon/DiscordIcon';
-import BSCIcon from '../components/svgIcon/BSCIcon';
+import Lg from '../images/proposals/pic.png';
+
+
+
 
 const Home = () => {
-  return (
-    <Container flexDirection={'column'} alignItems={'center'}>
-      <BannerInfo>
+  return <Container flexDirection={'column'} alignItems={'center'}>
+     <BannerInfo>
         <img src={Bg} alt="" />
         <Info flexDirection={'column'} gap={26}>
           <Title>
-            DECENTRALIZED<br></br> DATA MARKETPLACE
+            EMPOWERING<br></br> SCIENCE
           </Title>
           <SubTitle>
-            A Best Practice of BNB Greenfield Cross Chain Programmable Ability.
+          Unleashing Innovation: SciChain - Where Research meets Blockchain.
           </SubTitle>
-          <a
-            href="https://github.com/bnb-chain/greenfield-data-marketplace-frontend"
-            target="_blank"
-          >
-            <GithubCon
-              gap={12}
-              justifyContent={'flex-start'}
-              alignItems={'center'}
-            >
-              <GithubIcon w={22} h={22} className="githubIcon"></GithubIcon>
-              BUILD MY MARKETPLACE
-              <LinkArrowIcon w={18} h={18} className="arrow"></LinkArrowIcon>
-            </GithubCon>
-          </a>
         </Info>
       </BannerInfo>
-      <HomeList></HomeList>
       <WorkInfo flexDirection={'column'} gap={37}>
-        <WorkMainTitle>How it works</WorkMainTitle>
-        <WorkItem flexDirection={'column'} gap={20}>
-          <WorkTitle>Backendless Framework </WorkTitle>
-          <WorkDesc>
-            Data-marketplace fully utilizes smart contracts, greenfield APIs,
-            and pre-defined rules to avoid complex backend deployments,
-            simplifying the deployment process to the extreme.
-          </WorkDesc>
-        </WorkItem>
-        <WorkItem flexDirection={'column'} gap={20}>
-          <WorkTitle>Fully Greenfield Hosted Website</WorkTitle>
-          <WorkDesc>
-            The data-marketplace website is hosted by greenfield, no traditional
-            cloud infrastructure，anti-Censorship.
-          </WorkDesc>
-        </WorkItem>
-        <WorkItem flexDirection={'column'} gap={20}>
-          <WorkTitle>Fully EVM Compatible</WorkTitle>
-          <WorkDesc>
-            Data-marketplace has implemented smart contracts using Solidity,
-            which are deployed on the BSC network. Users/developers on any BSC
-            don't even need to be aware of Greenfield's existence, and don't
-            need to hold any tokens on Greenfield in order to purchase and
-            access data.
-          </WorkDesc>
-        </WorkItem>
-        <WorkItem flexDirection={'column'} gap={20}>
-          <WorkTitle>Ultimate Fast Trading Experience</WorkTitle>
-          <WorkDesc>
-            Thanks to the fast blocking time of Greenfield and BSC, users can
-            complete data listing and trading in seconds.
-          </WorkDesc>
-        </WorkItem>
-      </WorkInfo>
-      <Cards
-        alignItems={'center'}
-        justifyContent={'center'}
-        flexDirection={'column'}
-        gap={50}
-      >
-        <TitleCon flexDirection={'column'} alignItems={'center'} gap={20}>
-          <CardTitle>Build You Own dApps with BNB Greenfield</CardTitle>
-          <CardSubTitle>
-            We’ve prepared all the toolings you need to get started with BNB
-            Greenfield Now!
-          </CardSubTitle>
-        </TitleCon>
-        <CardCon gap={18}>
-          <a href="https://greenfield.bnbchain.org/en" target="_blank">
-            <CardItem alignItems={'center'} gap={16} flexDirection={'column'}>
-              <BSCIcon w={32} h={32} className="icon"></BSCIcon>
-              <CardItemTitle className="title">
-                BNB Greenfield<br></br>Website
-              </CardItemTitle>
-            </CardItem>
-          </a>
-          <a
-            href="https://docs.bnbchain.org/greenfield-docs/docs/guide/home"
-            target="_blank"
-          >
-            <CardItem alignItems={'center'} gap={16} flexDirection={'column'}>
-              <DocIcon w={32} h={32} className="icon"></DocIcon>
-              <CardItemTitle className="title">Documentations</CardItemTitle>
-            </CardItem>
-          </a>
-          <a
-            href="https://docs.bnbchain.org/greenfield-docs/docs/guide/home"
-            target="_blank"
-          >
-            <CardItem alignItems={'center'} gap={16} flexDirection={'column'}>
-              <GithubIcon w={26} h={26} className="icon"></GithubIcon>
-              <CardItemTitle className="title">Github</CardItemTitle>
-            </CardItem>
-          </a>
-          <a href="https://forum.bnbchain.org/" target="_blank">
-            <CardItem alignItems={'center'} gap={16} flexDirection={'column'}>
-              <FullTeamIcon w={32} h={32} className="icon"></FullTeamIcon>
-              <CardItemTitle className="title">Forum</CardItemTitle>
-            </CardItem>
-          </a>
-          <a href="https://discord.gg/bnbchain" target="_blank">
-            <CardItem alignItems={'center'} gap={16} flexDirection={'column'}>
-              <DiscordIcon w={32} h={32} className="icon"></DiscordIcon>
-              <CardItemTitle className="title">Discord</CardItemTitle>
-            </CardItem>
-          </a>
-        </CardCon>
-      </Cards>
-    </Container>
-  );
-};
+  <WorkMainTitle>Revolutionizing Scientific Research</WorkMainTitle>
+  
+  <WorkItem flexDirection={'column'} gap={20}>
+    <WorkTitle>Fast Collaboration</WorkTitle>
+    <WorkDesc>
+      SciChain enables scientists and researchers to collaborate quickly and efficiently, breaking down geographical boundaries and connecting diverse minds from around the world. This fosters a global community where collective intelligence can be harnessed to revolutionise the world of science.
+    </WorkDesc>
+  </WorkItem>
+
+  <WorkItem flexDirection={'column'} gap={20}>
+    <WorkTitle>Knowledge Sharing</WorkTitle>
+    <WorkDesc>
+    SciChain facilitates the sharing of scientific knowledge, allowing researchers to unlock the full potential of science. By embracing transparency and open communication, Molecule creates a thriving ecosystem where integrity and accountability are paramount. Researchers can freely exchange information, access valuable data, and contribute to a more equitable and fair scientific community.
+    </WorkDesc>
+  </WorkItem>
+
+  <WorkItem flexDirection={'column'} gap={20}>
+    <WorkTitle>Disruption of Traditional Structures</WorkTitle>
+    <WorkDesc>
+    SciChain disrupts traditional structures and funding models in the scientific community. By breaking down barriers and challenging norms, it enables researchers to explore new avenues of research and pursue innovative ideas. This disruptive approach encourages creativity, encourages out-of-the-box thinking, and empowers scientists to create the unknown.
+    </WorkDesc>
+  </WorkItem>
+
+  <WorkItem flexDirection={'column'} gap={20}>
+    <WorkTitle>Empowerment</WorkTitle>
+    <WorkDesc>
+    SciChain empowers scientists and researchers, giving them more control over their work and the development of life sciences. By enabling them to govern the research process, intellectual property and involve patients in decision-making, Molecule ensures that scientific breakthroughs are driven by the needs of the community. This empowerment creates a future where people have control over their own health and where scientific advancements benefit all.
+    </WorkDesc>
+  </WorkItem>
+</WorkInfo>
+
+  <ProposalMainTitle>Proposals</ProposalMainTitle>
+
+  <ProposalContainer>
+  <ProposalCard>
+  <img src={Lg} className='img' alt="" />
+  <ProposalCardContent>
+  <ProposalInfo>
+    <ProposalStatus>
+      Longevity
+    </ProposalStatus>
+    <ProposalStatus>
+      Fully Funded
+    </ProposalStatus>
+  </ProposalInfo>
+
+  <ProposalTitle>
+  SavedApe: Microbial Lipid Production with Synthetic Biology
+  </ProposalTitle>
+  <ProposalDesc>
+
+SavedApe is an innovative project focused on microbial lipid production through the application of synthetic biology. Leveraging cutting-edge techniques in genetic engineering and biotechnology, SavedApe aims to enhance the efficiency of lipid synthesis within microbial organisms. 
+  </ProposalDesc>
+  </ProposalCardContent>
+  </ProposalCard>
+ 
+  </ProposalContainer>
+
+  </Container>
+}
 
 export default Home;
-
 const Container = styled(Flex)`
   margin-top: -80px;
   width: 100%;
   background-color: #1e2026;
 `;
 
+const ProposalContainer = styled(Flex) `
+  flex-direction: column;
+
+`
 const BannerInfo = styled.div`
   position: relative;
   width: 100%;
@@ -169,25 +125,6 @@ const SubTitle = styled.div`
   color: #b9b9bb;
 `;
 
-const GithubCon = styled(Flex)`
-  cursor: pointer;
-  color: #f0b90b;
-  .githubIcon {
-    color: #cc9d09;
-  }
-  .arrow {
-    color: #cc9d09;
-  }
-  &:hover {
-    color: #f8d12f;
-    .githubIcon {
-      color: #f0b90b;
-    }
-    .arrow {
-      color: #f0b90b;
-    }
-  }
-`;
 
 const WorkInfo = styled(Flex)`
   margin-top: 70px;
@@ -201,6 +138,89 @@ const WorkMainTitle = styled.div`
   font-weight: 700;
   color: #ffffff;
 `;
+
+const ProposalMainTitle = styled.div`
+text-align: center;
+font-size: 42px;
+font-weight: 700;
+color: #ffffff;
+`;
+
+const ProposalCard = styled.div`
+text-align: center;
+width: 350px;
+height: 600px;
+border-radius: 8px;
+cursor: pointer;
+background-color: #fff;
+line-height: 28px;
+.icon {
+  margin-top: 22.3px;
+}
+.title {
+  color: #fff;
+}
+.img {
+  width: 100%;
+  overflow: hidden;
+  height: 120px;
+  background-color:blue;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+}
+&:hover {
+  background-color: #fff;
+
+  .icon {
+    margin-top: 22.3px;
+    color: #aeafb0;
+  }
+  .title {
+    color: #535458;
+  }
+}
+`
+
+const ProposalCardContent =styled.div`
+display: flex;
+flex-direction: column;
+padding: 20px;
+
+`
+
+const ProposalInfo = styled.div`
+display: flex;
+width: 100%;
+justify-content: space-around;
+margin-top: 10px;
+color: #000;
+
+`
+const ProposalStatus = styled.div`
+ display: flex;
+ border-radius: 20px;
+ border-width: 2px;
+ border-color: #b9b9bb;
+ width: fit-content;
+ height: fit-content;
+ padding-inline: 15px;
+ padding-bottom: 7px;
+`
+
+const ProposalTitle = styled.div`
+font-size: 2rem;
+text-align: left;
+color: #000;
+font-weight: 900;
+margin-top: 15px
+`
+
+const ProposalDesc = styled.div `
+font-size: 18px;
+font-weight: 400;
+color: #b9b9bb;
+`
 
 const WorkItem = styled(Flex)``;
 

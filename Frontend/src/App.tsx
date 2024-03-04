@@ -22,6 +22,8 @@ import './base/global.css';
 import * as env from './env';
 
 import RouteGuard from './router/index';
+import Marketplace from './pages/Martketplace';
+import Proposal from './pages/Proposal';
 
 export interface IRoute {
   children?: Array<IRoute>;
@@ -53,6 +55,14 @@ const routes: Array<IRoute> = [
     path: '/folder',
     element: <Folder></Folder>,
   },
+  {
+    path: '/marketplace',
+    element: <Marketplace></Marketplace>,
+  },
+  {
+    path: '/proposal',
+    element: <Proposal></Proposal>
+  }
 ];
 
 const gfChain: Chain = {

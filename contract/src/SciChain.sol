@@ -161,7 +161,7 @@ contract SciChain is ReentrancyGuard, AccessControl, GroupApp {
         }
     }
 
-    function listProposal(string memory title ,string memory description, uint256 groupId) onlyGroupOwner(groupId) external returns (uint256) {
+    function listProposal(string memory title ,string memory description, uint256 groupId) external returns (uint256) {
         proposalCounter++;
         Proposal storage newProposal = proposals[proposalCounter];
         newProposal.title = title;

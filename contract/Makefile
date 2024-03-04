@@ -38,10 +38,47 @@ anvil :; anvil -m 'test test test test test test test test test test test junk' 
 NETWORK_ARGS := --rpc-url http://localhost:8545 --private-key $(DEFAULT_ANVIL_KEY) --broadcast
 
 ifeq ($(findstring --network bsc,$(ARGS)),--network bsc)
-	NETWORK_ARGS := --rpc-url $(RPC_TESTNET) --private-key $(OP_PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(BSC_API_KEY) -vvvv
+	NETWORK_ARGS := --rpc-url $(RPC_TESTNET) --private-key $(OP_PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
+endif
+
+ifeq ($(findstring --network sep,$(ARGS)),--network sep)
+	NETWORK_ARGS := --rpc-url $(SEPOLIA_URL) --private-key $(OP_PRIVATE_KEY) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
 endif
 
 deploySciChain:
 	@forge script script/DeploySciChain.s.sol:DeploySciChain $(NETWORK_ARGS)
+
+deployGovToken:
+	@forge script script/DeployGovToken.s.sol:DeployGovToken $(NETWORK_ARGS)
+
+deployTimeLock:
+	@forge script script/DeployTimelock.s.sol:DeployTimeLock $(NETWORK_ARGS)
+
+deployGovernor:
+	@forge script script/DeployGovernor.s.sol:DeployGovernor $(NETWORK_ARGS)
+
+deployTreasurydao:
+	@forge script script/DeployTreasurydao.s.sol:DeployTreasurydao $(NETWORK_ARGS)
+
+deployStore:
+	@forge script script/DeployStore.s.sol:DeployStore $(NETWORK_ARGS)
+
+listProposal: 
+	@forge script script/Interactions.s.sol:listProposal $(NETWORK_ARGS)
+
+reviewProposal:
+	@forge script script/Interactions.s.sol:reviewProposal $(NETWORK_ARGS)
+
+publishProposal:
+	@forge script script/Interactions.s.sol:publishProposal $(NETWORK_ARGS)
+
+transferOwnership: 
+	@forge script script/Interactions.s.sol:transferOwnership $(NETWORK_ARGS)
+
+proposeFunding:
+	@forge script script/Interactions.s.sol:proposeFunding $(NETWORK_ARGS)
+
+vote:
+	@forge script script/Interactions.s.sol:Vote $(NETWORK_ARGS)
 
 

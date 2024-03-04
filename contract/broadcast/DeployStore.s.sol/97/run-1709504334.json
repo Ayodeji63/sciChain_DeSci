@@ -1,0 +1,34 @@
+{
+  "transactions": [
+    {
+      "hash": "0xaa53294cea1c57c674035263a9169226a40a23a07109bb09294e44ac575f6080",
+      "transactionType": "CREATE",
+      "contractName": "Store",
+      "contractAddress": "0x36C375609790E40e6fbC4E7F0FA0597dB3A47720",
+      "function": null,
+      "arguments": null,
+      "rpc": "https://data-seed-prebsc-1-s1.binance.org:8545/",
+      "transaction": {
+        "type": "0x00",
+        "from": "0xb1f540756be3c06ebbcac15d701c5477f271a7a0",
+        "gas": "0x1d155",
+        "value": "0x0",
+        "data": "0x608060405234801561001057600080fd5b5060b18061001f6000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c80632908d2b91460375780636057361d146051575b600080fd5b603f60005481565b60405190815260200160405180910390f35b6061605c3660046063565b600055565b005b600060208284031215607457600080fd5b503591905056fea2646970667358221220d92c9a7ae6a6ef965ef22dd7075ffcf26a28a04bd823f1aa9149c0f85d65628764736f6c63430008140033",
+        "nonce": "0x69"
+      },
+      "additionalContracts": [],
+      "isFixedGasLimit": false
+    }
+  ],
+  "receipts": [],
+  "libraries": [],
+  "pending": [
+    "0xaa53294cea1c57c674035263a9169226a40a23a07109bb09294e44ac575f6080"
+  ],
+  "path": "/home/user/projects/sciChain/contract/broadcast/DeployStore.s.sol/97/run-latest.json",
+  "returns": {},
+  "timestamp": 1709504334,
+  "chain": 97,
+  "multi": false,
+  "commit": "52c15b0"
+}

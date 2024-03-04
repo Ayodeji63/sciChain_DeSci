@@ -114,18 +114,37 @@ const Header = () => {
       height={80}
     >
       <LeftCon gap={42} alignItems={'center'}>
-        <img
-          onClick={() => {
-            navigate('/');
-          }}
-          src={LogoGroup}
-          alt="logo"
-        />
-        <Search width="380px" height="40px"></Search>
+        <Logo  
+            onClick={() => {
+              // if (!isConnecting && !isConnected) handleModalOpen();
+              navigate('/');
+            }}
+            >
+            SciChain
+        </Logo>
+        {/* <Search width="380px" height="40px"></Search>  */}
       </LeftCon>
 
       <RightFunCon alignItems={'center'} justifyContent={'center'} gap={18}>
         <>
+        <Button
+            onClick={() => {
+              // if (!isConnecting && !isConnected) handleModalOpen();
+              navigate('/marketplace');
+            }}
+            variant="text"
+          >
+            Marketplace
+          </Button>
+          <Button
+            onClick={() => {
+              // if (!isConnecting && !isConnected) handleModalOpen();
+              navigate('/proposal');
+            }}
+            variant="text"
+          >
+            Proposal
+          </Button>
           <Button
             onClick={() => {
               if (!isConnecting && !isConnected) handleModalOpen();
@@ -135,6 +154,8 @@ const Header = () => {
           >
             List My Data
           </Button>
+
+         
         </>
         {address && (
           <Menu placement="bottom-end">
@@ -336,6 +357,14 @@ const Address = styled(Flex)`
   justify-content: center;
   align-items: center;
   gap: 12px;
+`;
+
+const Logo = styled.h1`
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  text-spacing: 1.5;
+  cursor: pointer;
 `;
 
 const Disconnect = styled.div`

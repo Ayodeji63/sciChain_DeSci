@@ -5,4 +5,5 @@
 @openzeppelin/contracts/=lib/greenfield-contracts-sdk/node_modules/@openzeppelin/contracts/
 ds-test/=lib/forge-std/lib/ds-test/src/
 forge-std/=lib/forge-std/src/
+foundry-devops/=lib/foundry-devops/
 greenfield-contracts-sdk/=lib/greenfield-contracts-sdk/contracts/
